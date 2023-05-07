@@ -1,5 +1,5 @@
 class TableReferralLogsController < ApplicationController
-  before_action :set_table_referral_log, only: %i[ show create ]
+  before_action :set_table_referral_log, only: %i[ show ]
   before_action :authenticate_user!
 
   # GET /table_referral_logs or /table_referral_logs.json
@@ -10,8 +10,6 @@ class TableReferralLogsController < ApplicationController
   # GET /table_referral_logs/1 or /table_referral_logs/1.json
   def show
     @table_referral_log = TableReferralLog.find_by(id: params[:id])
-    puts TableReferralLog.find_by(id: params[:id]).recepient_email_id
-    puts "the above line is excected"
   end
 
   # GET /table_referral_logs/new
@@ -26,11 +24,13 @@ class TableReferralLogsController < ApplicationController
 
   # POST /table_referral_logs or /table_referral_logs.json
   def create
-    @table_referral_log = TableReferralLog.new(table_referral_log_params)
-
+    @table_referral_log = TableReferralLog.new(recepient_email_id: params["table_referral_log"]["recepient_email_id"], user_id: current_user.id , status: 0)
+    puts "coming here"
     respond_to do |format|
+
       if @table_referral_log.save
-        format.html { redirect_to table_referral_log_url(@table_referral_log), notice: "Table referral log was successfully created." }
+        ReferralMailer.send_mail(current_user.email,params["table_referral_log"]["recepient_email_id"],@table_referral_log).deliver_later
+        format.html { redirect_to table_referral_log_url(@table_referral_log), notice: "Referral was successfully created." }
         format.json { render :show, status: :created, location: @table_referral_log }
       else
         format.html { render :new, status: :unprocessable_entity }

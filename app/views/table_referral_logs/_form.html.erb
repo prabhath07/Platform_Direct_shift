@@ -11,7 +11,16 @@
     </div>
   <% end %>
 
+
   <div>
-    <%= form.submit %>
+    <%= form.label :recepient_email_id, style: "display: block" %>
+    <%= form.text_field :recepient_email_id %>
+  </div>
+<br/>
+
+  <div>
+    <p><%= form.submit %></p>
   </div>
 <% end %>
+
+
