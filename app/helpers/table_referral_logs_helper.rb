@@ -1,0 +1,2 @@
+module TableReferralLogsHelper
+end

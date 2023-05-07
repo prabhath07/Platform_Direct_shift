@@ -1,0 +1,17 @@
+<%= form_with(model: table_referral_log) do |form| %>
+  <% if table_referral_log.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(table_referral_log.errors.count, "error") %> prohibited this table_referral_log from being saved:</h2>
+
+      <ul>
+        <% table_referral_log.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

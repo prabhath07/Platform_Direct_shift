@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Table referral logs</h1>
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Link</th>
+  </tr>
+   <% @table_referral_logs.each do |table_referral_log| %> 
+    <tr>
+      <td><%= table_referral_log.recepient_email_id %></td>
+      <td><%= table_referral_log.status %></td>
+      <td>
+      <%= link_to 'show this log' ,table_referral_log %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+

@@ -1,8 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Welcome to the Referral Platform</h1>
+
 <% if current_user %>
   <p>Welcome, <%= current_user.email %>!</p>
+  <% if current_user.native_user? %>
+    <p><a href = "table_referral_logs/new">Give a referral</a></p>
+    <% @referrals.each do |referrals| %>
+      <p><% referrals.user_id %></p>
+    <% end %>  
+  <% end %>
   <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+
 <% else %>
   <%= link_to 'Login', new_user_session_path %>
   <%= link_to 'Sign up', new_user_registration_path %>

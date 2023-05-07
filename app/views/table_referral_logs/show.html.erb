@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @table_referral_log %>
+
+<div>
+  <p>recepient_email_id: <%= @table_referral_log.recepient_email_id%></p>
+  <p>status of the referral: <%=@table_referral_log.status %></p>
+  <%= link_to "Edit this table referral log", edit_table_referral_log_path(@table_referral_log) %> |
+  <%= link_to "Back to table referral logs", table_referral_logs_path %>
+
+  <%= button_to "Destroy this table referral log", @table_referral_log, method: :delete %>
+</div>
