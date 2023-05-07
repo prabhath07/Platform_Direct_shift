@@ -1,5 +1,6 @@
 class TableReferralLogsController < ApplicationController
   before_action :set_table_referral_log, only: %i[ show create ]
+  before_action :authenticate_user!
 
   # GET /table_referral_logs or /table_referral_logs.json
   def index
@@ -16,6 +17,7 @@ class TableReferralLogsController < ApplicationController
   # GET /table_referral_logs/new
   def new
     @table_referral_log = TableReferralLog.new
+    @table_referral_log.user_id = current_user.id
   end
 
   # GET /table_referral_logs/1/edit

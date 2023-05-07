@@ -4,9 +4,7 @@
   <p>Welcome, <%= current_user.email %>!</p>
   <% if current_user.native_user? %>
     <p><a href = "table_referral_logs/new">Give a referral</a></p>
-    <% @referrals.each do |referrals| %>
-      <p><% referrals.user_id %></p>
-    <% end %>  
+    <p><a href = "table_referral_logs"> View past referrals</a> </p>
   <% end %>
   <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
 
